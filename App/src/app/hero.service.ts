@@ -68,7 +68,7 @@ export class HeroService {
 
   /** POST: add a new hero to the server */
   addHero (hero: Hero): Observable<Hero> {
-    return this.http.post<Hero>('http://localhost:8080/heroes-api/tour-heroes/Crear', hero, httpOptions).pipe(
+    return this.http.post<Hero>('http://localhost:8080/heroes-api/tour-heroes/crear', hero, httpOptions).pipe(
       tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
     );
@@ -77,7 +77,7 @@ export class HeroService {
   /** DELETE: delete the hero from the server */
   deleteHero (hero: Hero | number): Observable<Hero> {
     const id = typeof hero === 'number' ? hero : hero.id;
-    const url = `http://localhost:8080/heroes-api/tour-heroes/Borrar/${id}`;
+    const url = `http://localhost:8080/heroes-api/tour-heroes/borrar/${id}`;
 
     return this.http.delete<Hero>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted hero id=${id}`)),
@@ -87,7 +87,7 @@ export class HeroService {
 
   /** PUT: update the hero on the server */
   updateHero (hero: Hero): Observable<any> {
-    return this.http.put('http://localhost:8080/heroes-api/tour-heroes/Actualizar', hero, httpOptions).pipe(
+    return this.http.put('http://localhost:8080/heroes-api/tour-heroes/actualizar', hero, httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${hero.id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
